@@ -47,7 +47,6 @@ create_ajout_produit (void)
   GtkWidget *hbox7;
   GtkWidget *image7;
   GtkWidget *label21;
-  GtkWidget *comboboxtype;
   GtkWidget *ok;
   GtkWidget *image14;
   GtkWidget *label13;
@@ -59,14 +58,15 @@ create_ajout_produit (void)
   GtkWidget *labeltype_produit;
   GtkWidget *labelquantit___produit;
   GtkWidget *labelprix_produit;
-  GtkWidget *labelerreurprixunitaire;
-  GtkWidget *labelerreurquantite;
-  GtkWidget *labelerreurnom;
   GtkWidget *Ajouter_Produit;
   GtkWidget *alignment1;
   GtkWidget *hbox1;
   GtkWidget *image1;
   GtkWidget *label7;
+  GtkWidget *comboboxtypep;
+  GtkWidget *labelerreurnom;
+  GtkWidget *labelerreurquantite;
+  GtkWidget *labelerreurprixunitaire;
 
   ajout_produit = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (ajout_produit, 624, 464);
@@ -144,19 +144,6 @@ create_ajout_produit (void)
   gtk_widget_show (label21);
   gtk_box_pack_start (GTK_BOX (hbox7), label21, FALSE, FALSE, 0);
 
-  comboboxtype = gtk_combo_box_new_text ();
-  gtk_widget_show (comboboxtype);
-  gtk_fixed_put (GTK_FIXED (fixed1), comboboxtype, 208, 104);
-  gtk_widget_set_size_request (comboboxtype, 224, 27);
-  gtk_container_set_border_width (GTK_CONTAINER (comboboxtype), 1);
-  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxtype), _("mouton"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxtype), _("coq"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxtype), _("vache "));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxtype), _("poule "));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxtype), _("oeufs "));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxtype), _("fraise"));
-  gtk_combo_box_set_add_tearoffs (GTK_COMBO_BOX (comboboxtype), TRUE);
-
   ok = gtk_button_new ();
   gtk_widget_show (ok);
   gtk_fixed_put (GTK_FIXED (fixed1), ok, 456, 104);
@@ -221,21 +208,6 @@ create_ajout_produit (void)
   gtk_widget_set_size_request (labelprix_produit, 104, 16);
   gtk_label_set_use_markup (GTK_LABEL (labelprix_produit), TRUE);
 
-  labelerreurprixunitaire = gtk_label_new (_("<span foreground=\"red\"><b>champ obligatoire *</b></span>"));
-  gtk_fixed_put (GTK_FIXED (fixed1), labelerreurprixunitaire, 448, 64);
-  gtk_widget_set_size_request (labelerreurprixunitaire, 152, 16);
-  gtk_label_set_use_markup (GTK_LABEL (labelerreurprixunitaire), TRUE);
-
-  labelerreurquantite = gtk_label_new (_("<span foreground=\"red\"><b>champ obligatoire *</b></span>"));
-  gtk_fixed_put (GTK_FIXED (fixed1), labelerreurquantite, 448, 272);
-  gtk_widget_set_size_request (labelerreurquantite, 152, 25);
-  gtk_label_set_use_markup (GTK_LABEL (labelerreurquantite), TRUE);
-
-  labelerreurnom = gtk_label_new (_("<span foreground=\"red\"><b>champ obligatoire *</b></span>"));
-  gtk_fixed_put (GTK_FIXED (fixed1), labelerreurnom, 464, 344);
-  gtk_widget_set_size_request (labelerreurnom, 128, 17);
-  gtk_label_set_use_markup (GTK_LABEL (labelerreurnom), TRUE);
-
   Ajouter_Produit = gtk_button_new ();
   gtk_widget_show (Ajouter_Produit);
   gtk_fixed_put (GTK_FIXED (fixed1), Ajouter_Produit, 488, 392);
@@ -256,6 +228,26 @@ create_ajout_produit (void)
   label7 = gtk_label_new_with_mnemonic (_("Ajouter"));
   gtk_widget_show (label7);
   gtk_box_pack_start (GTK_BOX (hbox1), label7, FALSE, FALSE, 0);
+
+  comboboxtypep = gtk_combo_box_new_text ();
+  gtk_widget_show (comboboxtypep);
+  gtk_fixed_put (GTK_FIXED (fixed1), comboboxtypep, 215, 103);
+  gtk_widget_set_size_request (comboboxtypep, 211, 30);
+
+  labelerreurnom = gtk_label_new (_("<span foreground=\"red\"><b>champ obligatoire *</b></span>"));
+  gtk_fixed_put (GTK_FIXED (fixed1), labelerreurnom, 456, 56);
+  gtk_widget_set_size_request (labelerreurnom, 144, 17);
+  gtk_label_set_use_markup (GTK_LABEL (labelerreurnom), TRUE);
+
+  labelerreurquantite = gtk_label_new (_("<span foreground=\"red\"><b>champ obligatoire *</b></span>"));
+  gtk_fixed_put (GTK_FIXED (fixed1), labelerreurquantite, 456, 272);
+  gtk_widget_set_size_request (labelerreurquantite, 152, 25);
+  gtk_label_set_use_markup (GTK_LABEL (labelerreurquantite), TRUE);
+
+  labelerreurprixunitaire = gtk_label_new (_("<span foreground=\"red\"><b>champ obligatoire *</b></span>"));
+  gtk_fixed_put (GTK_FIXED (fixed1), labelerreurprixunitaire, 456, 344);
+  gtk_widget_set_size_request (labelerreurprixunitaire, 152, 16);
+  gtk_label_set_use_markup (GTK_LABEL (labelerreurprixunitaire), TRUE);
 
   g_signal_connect ((gpointer) Pr__c__dent_ajouter_afficher_produit, "clicked",
                     G_CALLBACK (on_Pr__c__dent_ajouter_afficher_produit_clicked),
@@ -283,7 +275,6 @@ create_ajout_produit (void)
   GLADE_HOOKUP_OBJECT (ajout_produit, hbox7, "hbox7");
   GLADE_HOOKUP_OBJECT (ajout_produit, image7, "image7");
   GLADE_HOOKUP_OBJECT (ajout_produit, label21, "label21");
-  GLADE_HOOKUP_OBJECT (ajout_produit, comboboxtype, "comboboxtype");
   GLADE_HOOKUP_OBJECT (ajout_produit, ok, "ok");
   GLADE_HOOKUP_OBJECT (ajout_produit, image14, "image14");
   GLADE_HOOKUP_OBJECT (ajout_produit, label13, "label13");
@@ -295,14 +286,15 @@ create_ajout_produit (void)
   GLADE_HOOKUP_OBJECT (ajout_produit, labeltype_produit, "labeltype_produit");
   GLADE_HOOKUP_OBJECT (ajout_produit, labelquantit___produit, "labelquantit___produit");
   GLADE_HOOKUP_OBJECT (ajout_produit, labelprix_produit, "labelprix_produit");
-  GLADE_HOOKUP_OBJECT (ajout_produit, labelerreurprixunitaire, "labelerreurprixunitaire");
-  GLADE_HOOKUP_OBJECT (ajout_produit, labelerreurquantite, "labelerreurquantite");
-  GLADE_HOOKUP_OBJECT (ajout_produit, labelerreurnom, "labelerreurnom");
   GLADE_HOOKUP_OBJECT (ajout_produit, Ajouter_Produit, "Ajouter_Produit");
   GLADE_HOOKUP_OBJECT (ajout_produit, alignment1, "alignment1");
   GLADE_HOOKUP_OBJECT (ajout_produit, hbox1, "hbox1");
   GLADE_HOOKUP_OBJECT (ajout_produit, image1, "image1");
   GLADE_HOOKUP_OBJECT (ajout_produit, label7, "label7");
+  GLADE_HOOKUP_OBJECT (ajout_produit, comboboxtypep, "comboboxtypep");
+  GLADE_HOOKUP_OBJECT (ajout_produit, labelerreurnom, "labelerreurnom");
+  GLADE_HOOKUP_OBJECT (ajout_produit, labelerreurquantite, "labelerreurquantite");
+  GLADE_HOOKUP_OBJECT (ajout_produit, labelerreurprixunitaire, "labelerreurprixunitaire");
 
   return ajout_produit;
 }
@@ -559,7 +551,6 @@ create_modifie_produit (void)
   GtkWidget *modifie_produit;
   GtkWidget *fixed3;
   GtkWidget *entrynom_produit;
-  GtkWidget *entrytype_produit;
   GtkWidget *entryquantite_produit;
   GtkWidget *entryprixunitaire_produit;
   GtkWidget *labelid_produit;
@@ -580,6 +571,9 @@ create_modifie_produit (void)
   GtkWidget *hbox6;
   GtkWidget *image6;
   GtkWidget *label20;
+  GtkWidget *button3;
+  GtkWidget *image36;
+  GtkWidget *comboboxmodifiertypep;
 
   modifie_produit = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (modifie_produit, 650, 464);
@@ -596,12 +590,6 @@ create_modifie_produit (void)
   gtk_fixed_put (GTK_FIXED (fixed3), entrynom_produit, 272, 56);
   gtk_widget_set_size_request (entrynom_produit, 240, 35);
   gtk_entry_set_invisible_char (GTK_ENTRY (entrynom_produit), 8226);
-
-  entrytype_produit = gtk_entry_new ();
-  gtk_widget_show (entrytype_produit);
-  gtk_fixed_put (GTK_FIXED (fixed3), entrytype_produit, 272, 112);
-  gtk_widget_set_size_request (entrytype_produit, 240, 35);
-  gtk_entry_set_invisible_char (GTK_ENTRY (entrytype_produit), 8226);
 
   entryquantite_produit = gtk_entry_new ();
   gtk_widget_show (entryquantite_produit);
@@ -705,18 +693,34 @@ create_modifie_produit (void)
   gtk_widget_show (label20);
   gtk_box_pack_start (GTK_BOX (hbox6), label20, FALSE, FALSE, 0);
 
+  button3 = gtk_button_new ();
+  gtk_widget_show (button3);
+  gtk_fixed_put (GTK_FIXED (fixed3), button3, 544, 112);
+  gtk_widget_set_size_request (button3, 42, 29);
+
+  image36 = gtk_image_new_from_stock ("gtk-apply", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image36);
+  gtk_container_add (GTK_CONTAINER (button3), image36);
+
+  comboboxmodifiertypep = gtk_combo_box_new_text ();
+  gtk_widget_show (comboboxmodifiertypep);
+  gtk_fixed_put (GTK_FIXED (fixed3), comboboxmodifiertypep, 281, 116);
+  gtk_widget_set_size_request (comboboxmodifiertypep, 228, 33);
+
   g_signal_connect ((gpointer) button_modifier_afficher_produit, "clicked",
                     G_CALLBACK (on_button_modifier_afficher_produit_clicked),
                     NULL);
   g_signal_connect ((gpointer) modifier_produit, "clicked",
                     G_CALLBACK (on_modifier_produit_clicked),
                     NULL);
+  g_signal_connect ((gpointer) button3, "clicked",
+                    G_CALLBACK (on_button3_clicked),
+                    NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (modifie_produit, modifie_produit, "modifie_produit");
   GLADE_HOOKUP_OBJECT (modifie_produit, fixed3, "fixed3");
   GLADE_HOOKUP_OBJECT (modifie_produit, entrynom_produit, "entrynom_produit");
-  GLADE_HOOKUP_OBJECT (modifie_produit, entrytype_produit, "entrytype_produit");
   GLADE_HOOKUP_OBJECT (modifie_produit, entryquantite_produit, "entryquantite_produit");
   GLADE_HOOKUP_OBJECT (modifie_produit, entryprixunitaire_produit, "entryprixunitaire_produit");
   GLADE_HOOKUP_OBJECT (modifie_produit, labelid_produit, "labelid_produit");
@@ -737,6 +741,9 @@ create_modifie_produit (void)
   GLADE_HOOKUP_OBJECT (modifie_produit, hbox6, "hbox6");
   GLADE_HOOKUP_OBJECT (modifie_produit, image6, "image6");
   GLADE_HOOKUP_OBJECT (modifie_produit, label20, "label20");
+  GLADE_HOOKUP_OBJECT (modifie_produit, button3, "button3");
+  GLADE_HOOKUP_OBJECT (modifie_produit, image36, "image36");
+  GLADE_HOOKUP_OBJECT (modifie_produit, comboboxmodifiertypep, "comboboxmodifiertypep");
 
   return modifie_produit;
 }
@@ -1237,7 +1244,6 @@ create_Afficher_employe (void)
   GtkWidget *image19;
   GtkWidget *labelidemploye;
   GtkWidget *labelnomemploye;
-  GtkWidget *treeview_employe;
   GtkWidget *buttonsupprimerafficheremploye;
   GtkWidget *alignment16;
   GtkWidget *hbox16;
@@ -1258,6 +1264,8 @@ create_Afficher_employe (void)
   GtkWidget *hbox17;
   GtkWidget *image23;
   GtkWidget *label48;
+  GtkWidget *scrolledwindow2;
+  GtkWidget *treeview_employe;
 
   Afficher_employe = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (Afficher_employe, 800, 500);
@@ -1301,11 +1309,6 @@ create_Afficher_employe (void)
   gtk_fixed_put (GTK_FIXED (fixed7), labelnomemploye, 272, 40);
   gtk_widget_set_size_request (labelnomemploye, 49, 17);
   gtk_label_set_use_markup (GTK_LABEL (labelnomemploye), TRUE);
-
-  treeview_employe = gtk_tree_view_new ();
-  gtk_widget_show (treeview_employe);
-  gtk_fixed_put (GTK_FIXED (fixed7), treeview_employe, 32, 88);
-  gtk_widget_set_size_request (treeview_employe, 736, 328);
 
   buttonsupprimerafficheremploye = gtk_button_new ();
   gtk_widget_show (buttonsupprimerafficheremploye);
@@ -1392,6 +1395,16 @@ create_Afficher_employe (void)
   gtk_widget_show (label48);
   gtk_box_pack_start (GTK_BOX (hbox17), label48, FALSE, FALSE, 0);
 
+  scrolledwindow2 = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_show (scrolledwindow2);
+  gtk_fixed_put (GTK_FIXED (fixed7), scrolledwindow2, 32, 88);
+  gtk_widget_set_size_request (scrolledwindow2, 736, 328);
+
+  treeview_employe = gtk_tree_view_new ();
+  gtk_widget_show (treeview_employe);
+  gtk_container_add (GTK_CONTAINER (scrolledwindow2), treeview_employe);
+  gtk_widget_set_size_request (treeview_employe, 736, 328);
+
   g_signal_connect ((gpointer) buttonrechercheafficheremploye, "clicked",
                     G_CALLBACK (on_buttonrechercheafficheremploye_clicked),
                     NULL);
@@ -1417,7 +1430,6 @@ create_Afficher_employe (void)
   GLADE_HOOKUP_OBJECT (Afficher_employe, image19, "image19");
   GLADE_HOOKUP_OBJECT (Afficher_employe, labelidemploye, "labelidemploye");
   GLADE_HOOKUP_OBJECT (Afficher_employe, labelnomemploye, "labelnomemploye");
-  GLADE_HOOKUP_OBJECT (Afficher_employe, treeview_employe, "treeview_employe");
   GLADE_HOOKUP_OBJECT (Afficher_employe, buttonsupprimerafficheremploye, "buttonsupprimerafficheremploye");
   GLADE_HOOKUP_OBJECT (Afficher_employe, alignment16, "alignment16");
   GLADE_HOOKUP_OBJECT (Afficher_employe, hbox16, "hbox16");
@@ -1438,6 +1450,8 @@ create_Afficher_employe (void)
   GLADE_HOOKUP_OBJECT (Afficher_employe, hbox17, "hbox17");
   GLADE_HOOKUP_OBJECT (Afficher_employe, image23, "image23");
   GLADE_HOOKUP_OBJECT (Afficher_employe, label48, "label48");
+  GLADE_HOOKUP_OBJECT (Afficher_employe, scrolledwindow2, "scrolledwindow2");
+  GLADE_HOOKUP_OBJECT (Afficher_employe, treeview_employe, "treeview_employe");
 
   return Afficher_employe;
 }

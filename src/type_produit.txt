@@ -1,5 +1,10 @@
 mouton
 vache
 lapin
-
+poules
+oranges 
+fraise
+oeufs
+banane
+tomates
 

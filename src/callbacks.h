@@ -144,3 +144,7 @@ on_buttonafficher_acceuil_clicked      (GtkButton       *button,
 void
 on_buttoncamera_clicked                (GtkButton       *button,
                                         gpointer         user_data);
+
+void
+on_button3_clicked                     (GtkWidget      *button,
+                                        gpointer         user_data);

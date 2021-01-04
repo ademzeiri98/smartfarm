@@ -39,7 +39,7 @@ GtkWidget *ajoutproduit;
 GtkWidget *Afficher_produit;
 GtkTreeView *treeview_produit;
 GtkWidget *combobox1;
-combobox1=lookup_widget(button,"comboboxtype");
+combobox1=lookup_widget(button,"comboboxtypep");
 
 ajoutproduit = lookup_widget(button,"ajout_produit");
 
@@ -168,7 +168,7 @@ GtkWidget *modifie_produit;
 
 GtkWidget *label_idp;
 GtkWidget *entry_modifiernomp;
-GtkWidget *entry_modifiertypep;
+GtkWidget *comboboxmodifiertype;
 GtkWidget *entry_modifierquantitep;
 GtkWidget *label_modifierdatep;
 GtkWidget *entry_modifierprixp;
@@ -181,14 +181,14 @@ produit p;
 label_idp=lookup_widget(button,"labelid");
 label_modifierdatep= lookup_widget(button, "labeldatedajout");
 entry_modifiernomp= lookup_widget(button, "entrynom_produit");
-entry_modifiertypep= lookup_widget(button, "entrytype_produit");
 entry_modifierquantitep= lookup_widget(button, "entryquantite_produit");
 entry_modifierprixp= lookup_widget(button, "entryprixunitaire_produit");
+comboboxmodifiertype=lookup_widget(button, "comboboxmodifiertypep");
 
 
 strcpy(p.id,gtk_label_get_text(GTK_LABEL(label_idp)));
 strcpy(p.date_dajout,gtk_label_get_text(GTK_LABEL(label_modifierdatep)));
-strcpy(p.typep,gtk_entry_get_text(GTK_ENTRY(entry_modifiertypep)));
+strcpy(p.typep,gtk_combo_box_get_active_text(GTK_COMBO_BOX(comboboxmodifiertype)));
 strcpy(p.nomp,gtk_entry_get_text(GTK_ENTRY(entry_modifiernomp)));
 strcpy(p.quantite,gtk_entry_get_text(GTK_ENTRY(entry_modifierquantitep)));
 strcpy(p.prixunitaire,gtk_entry_get_text(GTK_ENTRY(entry_modifierprixp)));
@@ -200,7 +200,6 @@ modifier_produit(p);
 
 
 gtk_entry_set_text(GTK_ENTRY(entry_modifiernomp),"");
-gtk_entry_set_text(GTK_ENTRY(entry_modifiertypep),"");
 gtk_entry_set_text(GTK_ENTRY(entry_modifierquantitep),"");
 gtk_entry_set_text(GTK_ENTRY(entry_modifierprixp),"");
 
@@ -398,7 +397,7 @@ on_ok_clicked                          (GtkWidget       *button,
 char ref[50][50];
 int i,nbr;
 GtkWidget *combobox1;
-combobox1=lookup_widget(button,"comboboxtype");
+combobox1=lookup_widget(button,"comboboxtypep");
 nbr=liste_type(ref);
 for(i=0;i<nbr;i++)
 {
@@ -1010,6 +1009,24 @@ void
 on_buttoncamera_clicked                (GtkButton       *button,
                                         gpointer         user_data)
 {
+system("vlc camera.mp4");
+}
 
+
+void
+on_button3_clicked                     (GtkWidget       *button,
+                                        gpointer         user_data)
+{
+char ref[50][50];
+int i,nbr;
+GtkWidget *comboboxmodifiertype;
+comboboxmodifiertype=lookup_widget(button,"comboboxmodifiertypep");
+nbr=liste_type(ref);
+for(i=0;i<nbr;i++)
+{
+
+gtk_combo_box_append_text(GTK_COMBO_BOX(comboboxmodifiertype),_(ref[i]));
+
+}
 }
 
